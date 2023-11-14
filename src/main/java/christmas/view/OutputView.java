@@ -2,44 +2,44 @@ package christmas.view;
 
 public class OutputView {
 
-	public void printGreet() {
+	public static void printGreet() {
 		System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
-
+		System.out.println();
 	}
 
-	public void printStart() {
-		System.out.println("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리보기!");
+	public static void printStart(int date) {
+		System.out.println("12월 " + date + "일에 우테코 식당에서 받을 이벤트 혜택 미리보기!");
 
 	}
-	public void printMenu() {
+	public static void printMenu() {
 		System.out.println("<주문 메뉴>");
 
 	}
-	public void printAmountBeforeDiscount() {
+	public static void printAmountBeforeDiscount() {
 		System.out.println("<할인 전 총주문 금액>");
 
 	}
-	public void printGiftMenu() {
+	public static void printGiftMenu() {
 		System.out.println("<증정 메뉴>");
 
 	}
 
-	public void printBenefitsDetails() {
+	public static void printBenefitsDetails() {
 		System.out.println("<혜택 내역>");
 
 	}
 
-	public void printTotalBenefitsAmount() {
+	public static void printTotalBenefitsAmount() {
 		System.out.println("<총혜택 금액>");
 
 	}
 
-	public void printAmountAfterDiscount() {
+	public static void printAmountAfterDiscount() {
 		System.out.println("<할인 후 예상 결제 금액>");
 
 	}
 
-	public void printEventBadge() {
+	public static void printEventBadge() {
 		System.out.println("<12월 이벤트 배지>");
 
 	}
