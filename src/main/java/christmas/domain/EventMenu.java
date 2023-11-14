@@ -5,6 +5,7 @@ import christmas.view.OutputView;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class EventMenu {
 
@@ -13,7 +14,6 @@ public class EventMenu {
 		while (true) {
 			try {
 				String menuInput = InputView.readMenu();
-				// TODO validate 가능한 메뉴인지 enum 클래스 생성후 구현
 				return parseMenuList(menuInput);
 			} catch (IllegalArgumentException e) {
 				System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
@@ -32,8 +32,23 @@ public class EventMenu {
 			count += menuNumber;
 		}
 		validateCount(count);
+		validateExist(menu);
 		OutputView.printMenu(menu);
 		return menu;
+	}
+
+	private static void validateExist(Map<String, Integer> menu) {
+		boolean exist = false;
+		for(String key : menu.keySet()){
+			if(Objects.equals(Menu.getMenuInfo(key)
+					.getName(), key)){
+				exist = true;
+			}
+		}
+		if(exist == false){
+			System.out.println("[ERROR] 메뉴가 존재하지 않습니다.");
+			throw new IllegalArgumentException();
+		}
 	}
 
 	private static void validateCount(int count) {
