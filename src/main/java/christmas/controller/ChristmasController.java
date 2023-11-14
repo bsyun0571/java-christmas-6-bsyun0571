@@ -20,8 +20,7 @@ public class ChristmasController {
 
 
 	private void printEventPlanner(Map<String, Integer> menu) {
-		OutputView.printMenu();
-		OutputView.printAmountBeforeDiscount();
+		OutputView.printAmountBeforeDiscount(menu);
 		OutputView.printGiftMenu();
 		OutputView.printBenefitsDetails();
 		OutputView.printTotalBenefitsAmount();
