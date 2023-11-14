@@ -82,6 +82,7 @@
 ├─ controller
 │  └─ ChristmasController
 ├─ domain
+│  └─ Event
 ├─ view
 │  ├─ InputView
 │  └─ OutputView
