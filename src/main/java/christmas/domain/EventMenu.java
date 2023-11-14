@@ -33,7 +33,6 @@ public class EventMenu {
 		}
 		validateCount(count);
 		validateExist(menu);
-		OutputView.printMenu(menu);
 		return menu;
 	}
 
