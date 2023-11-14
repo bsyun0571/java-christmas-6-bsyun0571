@@ -27,15 +27,15 @@ public class Event {
 			return 0;
 		}
 		if (date % 7 == 1 || date % 7 == 2) {
-			return weekendSale(date, menu);
+			return weekendSale(menu);
 		}
 		if (date % 7 != 1 && date % 7 != 2) {
-			return weekdaySale(date, menu);
+			return weekdaySale(menu);
 		}
 		return 0;
 	}
 
-	public static int weekdaySale(int date, Map<String, Integer> menu) {
+	public static int weekdaySale(Map<String, Integer> menu) {
 		int saleMoney = 0;
 		for (String key : menu.keySet()) {
 			if (Objects.equals(Menu.getMenuInfo(key)
@@ -46,7 +46,7 @@ public class Event {
 		return saleMoney;
 	}
 
-	public static int weekendSale(int date, Map<String, Integer> menu) {
+	public static int weekendSale(Map<String, Integer> menu) {
 		int saleMoney = 0;
 		for (String key : menu.keySet()) {
 			if (Objects.equals(Menu.getMenuInfo(key)

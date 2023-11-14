@@ -1,7 +1,6 @@
 package christmas.domain;
 
 import christmas.view.InputView;
-import christmas.view.OutputView;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +9,7 @@ import java.util.Objects;
 public class EventMenu {
 
 	private final static int MAX_ORDER_NUMBER = 20;
+
 	public static Map<String, Integer> setMenuList() {
 		while (true) {
 			try {
@@ -38,13 +38,13 @@ public class EventMenu {
 
 	private static void validateExist(Map<String, Integer> menu) {
 		boolean exist = false;
-		for(String key : menu.keySet()){
-			if(Objects.equals(Menu.getMenuInfo(key)
-					.getName(), key)){
+		for (String key : menu.keySet()) {
+			if (Objects.equals(Menu.getMenuInfo(key)
+					.getName(), key)) {
 				exist = true;
 			}
 		}
-		if(exist == false){
+		if (exist == false) {
 			System.out.println("[ERROR] 메뉴가 존재하지 않습니다.");
 			throw new IllegalArgumentException();
 		}
