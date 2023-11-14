@@ -1,11 +1,14 @@
 package christmas.domain;
 
 import christmas.view.InputView;
+import christmas.view.OutputView;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class EventMenu {
+
+	private final static int MAX_ORDER_NUMBER = 20;
 	public static Map<String, Integer> setMenuList() {
 		while (true) {
 			try {
@@ -29,11 +32,12 @@ public class EventMenu {
 			count += menuNumber;
 		}
 		validateCount(count);
+		OutputView.printMenu(menu);
 		return menu;
 	}
 
 	private static void validateCount(int count) {
-		if (count > 20) {
+		if (count > MAX_ORDER_NUMBER) {
 			System.out.println("[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
 			throw new IllegalArgumentException();
 		}
