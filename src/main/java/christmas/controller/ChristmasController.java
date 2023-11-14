@@ -4,10 +4,7 @@ package christmas.controller;
 import christmas.domain.Event;
 import christmas.domain.EventDate;
 import christmas.domain.EventMenu;
-import christmas.view.InputView;
 import christmas.view.OutputView;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ChristmasController {
@@ -16,12 +13,10 @@ public class ChristmasController {
 		int date = EventDate.inputDate();
 		Map<String, Integer> menu = EventMenu.setMenuList();
 		OutputView.printStart(date);
-		printEventPlanner(menu);
 
 		Event.applyEvent(date, menu);
-
+		printEventPlanner(menu);
 	}
-
 
 
 	private void printEventPlanner(Map<String, Integer> menu) {
