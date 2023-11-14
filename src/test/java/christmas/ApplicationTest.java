@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
     private static final String LINE_SEPARATOR = System.lineSeparator();
@@ -34,6 +35,21 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 증정_메뉴_없음_출력() {
+        assertSimpleTest(() -> {
+            run("26", "타파스-1,제로콜라-1");
+            assertThat(output()).contains("<증정 메뉴>" + LINE_SEPARATOR + "없음");
+        });
+    }
+    @Test
+    void 총혜택_금액_0원_출력() {
+        assertSimpleTest(() -> {
+            run("26", "타파스-1,제로콜라-1");
+            assertThat(output()).contains("<총혜택 금액>" + LINE_SEPARATOR + "0원");
+        });
+    }
+
+    @Test
     void 날짜_예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
@@ -42,9 +58,25 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 날짜_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("45");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
     void 주문_예외_테스트() {
         assertSimpleTest(() -> {
             runException("3", "제로콜라-a");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라-21");
             assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         });
     }
