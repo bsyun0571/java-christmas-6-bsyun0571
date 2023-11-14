@@ -11,8 +11,9 @@ public class ChristmasController {
 	public void startEvent() {
 		OutputView.printGreet();
 		int date = EventDate.inputDate();
-		Map<String, Integer> menu = EventMenu.setMenuList();
 		OutputView.printStart(date);
+		Map<String, Integer> menu = EventMenu.setMenuList();
+
 
 		Event.applyEvent(date, menu);
 		printEventPlanner(menu);
