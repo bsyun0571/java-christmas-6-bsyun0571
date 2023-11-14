@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.util.Objects;
+
 public enum Menu {
 	MUSHROOMSOUP("애피타이저", "양송이스프", 6_000),
 	TAPAS("애피타이저", "타파스", 5_500),
@@ -34,5 +36,15 @@ public enum Menu {
 
 	public int getPrice() {
 		return price;
+	}
+
+	public static Menu getMenuInfo(String menuName){
+		for(Menu menu : values()){
+			if(Objects.equals(menu.getName(), menuName)){
+				return menu;
+			}
+		}
+		System.out.println("[ERROR] 올바른 입력이 아닙니다.");
+		throw new IllegalArgumentException();
 	}
 }
