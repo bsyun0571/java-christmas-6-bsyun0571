@@ -69,14 +69,12 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public static void printTotalBenefitsAmount(int christmasSaleMoney, int daySaleMoney, int specialSaleMoney,
-	                                            int giftMoney) {
+	public static void printTotalBenefitsAmount(int totalBenefits) {
 		System.out.println("<총혜택 금액>");
-		int totalBenefits = christmasSaleMoney + daySaleMoney + specialSaleMoney + giftMoney;
-		if(totalBenefits != 0){
+		if (totalBenefits != 0) {
 			System.out.printf("-%,d원\n\n", totalBenefits);
 		}
-		if(totalBenefits == 0){
+		if (totalBenefits == 0) {
 			System.out.println("0원\n\n");
 		}
 	}
@@ -88,9 +86,8 @@ public class OutputView {
 		System.out.printf("%,d원\n\n", afterDiscount);
 	}
 
-	public static void printEventBadge(int christmasSaleMoney, int daySaleMoney, int specialSaleMoney, int giftMoney) {
+	public static void printEventBadge(int totalBenefits) {
 		System.out.println("<12월 이벤트 배지>");
-		int totalBenefits = christmasSaleMoney + daySaleMoney + specialSaleMoney + giftMoney;
 		if (totalBenefits >= 20000) {
 			System.out.println("산타");
 		}
