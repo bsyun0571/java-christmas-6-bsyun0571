@@ -10,18 +10,18 @@ public class EventMenu {
 
 	private final static int MAX_ORDER_NUMBER = 20;
 
-	public static Map<String, Integer> setMenuList() {
+	public static Map<String, Integer> inputMenu() {
 		while (true) {
 			try {
 				String menuInput = InputView.readMenu();
-				return parseMenuList(menuInput);
+				return parseInputMenu(menuInput);
 			} catch (IllegalArgumentException e) {
 				System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
 			}
 		}
 	}
 
-	private static Map<String, Integer> parseMenuList(String menuInput) {
+	private static Map<String, Integer> parseInputMenu(String menuInput) {
 		List<String> menuAndNumber = List.of(menuInput.split(",|-"));
 		Map<String, Integer> menu = new HashMap<>();
 		int count = 0;
@@ -31,10 +31,14 @@ public class EventMenu {
 			menu.put(menuName, menuNumber);
 			count += menuNumber;
 		}
+		validate(count, menu);
+		return menu;
+	}
+
+	private static void validate(int count, Map<String, Integer> menu) {
 		validateCount(count);
 		validateExist(menu);
 		validateOnlyDrink(menu);
-		return menu;
 	}
 
 	private static void validateOnlyDrink(Map<String, Integer> menu) {
@@ -83,7 +87,7 @@ public class EventMenu {
 
 	private static String validateMenu(Map<String, Integer> menu, String name) {
 		if (menu.containsKey(name)) {
-			System.out.println("[ERROR] 중복된 메뉴 이름입니다.");
+			System.out.println("[ERROR] 중복된 메뉴 이름입니다. 한번에 입력해주세요.");
 			throw new IllegalArgumentException();
 		}
 		return name;
