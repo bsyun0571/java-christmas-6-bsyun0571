@@ -4,35 +4,42 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Event {
-
+	private final static int MIN_EVENT_PRICE = 10000;
+	private final static int MIN_GIFT_PRICE = 120000;
+	private final static int ZERO = 0;
+	private final static int GIFT_PRICE = 25000;
+	private final static int WEEK = 7;
+	private final static int BASIC_PRICE = 1000;
+	private final static int PER_DAY = 100;
+	private final static int THIS_YEAR = 2023;
 	public static int giveGift(int amount) {
-		if (amount > 120000) {
-			return 25000;
+		if (amount >= MIN_GIFT_PRICE) {
+			return GIFT_PRICE;
 		}
-		return 0;
+		return ZERO;
 	}
 
 	public static int specialSale(int date, int amount) {
-		if (amount < 10000) {
-			return 0;
+		if (amount < MIN_EVENT_PRICE) {
+			return ZERO;
 		}
-		if (date % 7 == 3 || date == 25) {
-			return 1000;
+		if (date % WEEK == 3 || date == 25) {
+			return BASIC_PRICE;
 		}
-		return 0;
+		return ZERO;
 	}
 
 	public static int daySale(int date, Map<String, Integer> menu, int amount) {
-		if (amount < 10000) {
-			return 0;
+		if (amount < MIN_EVENT_PRICE) {
+			return ZERO;
 		}
-		if (date % 7 == 1 || date % 7 == 2) {
+		if (date % WEEK == 1 || date % WEEK == 2) {
 			return weekendSale(menu);
 		}
-		if (date % 7 != 1 && date % 7 != 2) {
+		if (date % WEEK != 1 && date % WEEK != 2) {
 			return weekdaySale(menu);
 		}
-		return 0;
+		return ZERO;
 	}
 
 	public static int weekdaySale(Map<String, Integer> menu) {
@@ -40,7 +47,7 @@ public class Event {
 		for (String key : menu.keySet()) {
 			if (Objects.equals(Menu.getMenuInfo(key)
 					.getType(), "디저트")) {
-				saleMoney += 2023 * menu.get(key);
+				saleMoney += THIS_YEAR * menu.get(key);
 			}
 		}
 		return saleMoney;
@@ -51,19 +58,19 @@ public class Event {
 		for (String key : menu.keySet()) {
 			if (Objects.equals(Menu.getMenuInfo(key)
 					.getType(), "메인")) {
-				saleMoney += 2023;
+				saleMoney += THIS_YEAR * menu.get(key);
 			}
 		}
 		return saleMoney;
 	}
 
 	public static int christmasDDaySale(int date, int amount) {
-		if (amount < 10000) {
-			return 0;
+		if (amount < MIN_EVENT_PRICE) {
+			return ZERO;
 		}
 		if (date < 26) {
-			return 1000 + (date - 1) * 100;
+			return BASIC_PRICE + (date - 1) * PER_DAY;
 		}
-		return 0;
+		return ZERO;
 	}
 }
