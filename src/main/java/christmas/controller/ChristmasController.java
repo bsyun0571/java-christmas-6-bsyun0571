@@ -1,6 +1,5 @@
 package christmas.controller;
 
-
 import christmas.domain.Event;
 import christmas.domain.EventDate;
 import christmas.domain.EventMenu;
@@ -12,11 +11,14 @@ public class ChristmasController {
 	public void startEvent() {
 		OutputView.printGreet();
 		int date = EventDate.inputDate();
-		Map<String, Integer> menu = EventMenu.setMenuList();
+		Map<String, Integer> menu = EventMenu.inputMenu();
+
 		OutputView.printStart(date);
 		OutputView.printMenu(menu);
+
 		int amount = getAmount(menu);
 		OutputView.printAmountBeforeDiscount(amount);
+
 		applyEvent(date, menu, amount);
 	}
 
@@ -25,13 +27,19 @@ public class ChristmasController {
 		int daySaleMoney = Event.daySale(date, menu, amount);
 		int specialSaleMoney = Event.specialSale(date, amount);
 		int giftMoney = Event.giveGift(amount);
-		OutputView.printGiftMenu(giftMoney);
-		OutputView.printBenefitsDetails(christmasSaleMoney, daySaleMoney, specialSaleMoney, giftMoney, date);
-		OutputView.printTotalBenefitsAmount(christmasSaleMoney, daySaleMoney, specialSaleMoney, giftMoney);
-		OutputView.printAmountAfterDiscount(christmasSaleMoney, daySaleMoney, specialSaleMoney, amount);
-		OutputView.printEventBadge(christmasSaleMoney,daySaleMoney,specialSaleMoney,giftMoney);
+		int totalBenefits = christmasSaleMoney + daySaleMoney + specialSaleMoney + giftMoney;
+
+		printApplyEvent(christmasSaleMoney, daySaleMoney, specialSaleMoney, giftMoney, totalBenefits, date, amount);
 	}
 
+	private void printApplyEvent(int christmasSaleMoney, int daySaleMoney, int specialSaleMoney, int giftMoney,
+	                             int totalBenefits, int date, int amount) {
+		OutputView.printGiftMenu(giftMoney);
+		OutputView.printBenefitsDetails(christmasSaleMoney, daySaleMoney, specialSaleMoney, giftMoney, date);
+		OutputView.printTotalBenefitsAmount(totalBenefits);
+		OutputView.printAmountAfterDiscount(christmasSaleMoney, daySaleMoney, specialSaleMoney, amount);
+		OutputView.printEventBadge(totalBenefits);
+	}
 
 	private int getAmount(Map<String, Integer> menu) {
 		int amount = 0;
