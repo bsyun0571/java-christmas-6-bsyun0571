@@ -33,7 +33,22 @@ public class EventMenu {
 		}
 		validateCount(count);
 		validateExist(menu);
+		validateOnlyDrink(menu);
 		return menu;
+	}
+
+	private static void validateOnlyDrink(Map<String, Integer> menu) {
+		boolean alwaysDrink = true;
+		for (String key : menu.keySet()) {
+			if (!Objects.equals(Menu.getMenuInfo(key)
+					.getType(), "음료")) {
+				alwaysDrink = false;
+			}
+		}
+		if (alwaysDrink) {
+			System.out.println("[ERROR] 음료만 주문할 수 없습니다.");
+			throw new IllegalArgumentException();
+		}
 	}
 
 	private static void validateExist(Map<String, Integer> menu) {
