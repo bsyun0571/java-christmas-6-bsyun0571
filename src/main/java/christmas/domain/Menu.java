@@ -44,7 +44,7 @@ public enum Menu {
 				return menu;
 			}
 		}
-		System.out.println("[ERROR] 올바른 입력이 아닙니다.");
+		System.out.println("[ERROR] 존재하는 메뉴 이름이 아닙니다.");
 		throw new IllegalArgumentException();
 	}
 }
